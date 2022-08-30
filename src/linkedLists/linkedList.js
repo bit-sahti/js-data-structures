@@ -66,14 +66,13 @@ class LinkedList {
 
         currentNode.next = nodeToInsert;
 
-        this.length++;
-
-        return;
+        continue;
       }
 
       currentNode = currentNode.next;
-      this.length++;
     }
+
+    this.length++;
   }
 
   deleteFromStart() {
@@ -81,13 +80,11 @@ class LinkedList {
 
     if (this.head.next) {
       this.head = this.head.next;
+
+      this.length--;
     } else {
-      this.head = null;
-
-      this.tail = null;
+      this.clear();
     }
-
-    this.length--;
   }
 
   deleteFromEnd() {
@@ -112,20 +109,26 @@ class LinkedList {
 
     for (let i = 0; i <= index; i++) {
       if (i === index) {
-        previousNode.next = currentNode?.next ?? null;
-
-        return;
+        previousNode.next = currentNode.next;
+        
+        continue;
       }
-
+      
       previousNode = currentNode;
       currentNode = currentNode.next;
+
     }
 
     this.length--;
   }
 
   clear() {
-    if (this.head) this.head = null;
+    if (this.head) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+    }
+
   }
 }
 

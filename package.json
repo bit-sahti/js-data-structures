@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha */*.test.js",
+    "test": "mocha ./src/*/*.test.js",
+    "test:dev": "mocha -w -p ./src/*/*.test.js",
     "test:cov": "c8 npm test"
   },
   "keywords": [],

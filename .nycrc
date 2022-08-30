@@ -1,5 +1,5 @@
 {
-    "all": true,
+    "all": false,
     "reporter": ["text", "html"],
     "branches": 80,
     "lines": 80,
