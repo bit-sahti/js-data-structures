@@ -1,0 +1,13 @@
+{
+  "name": "algomania",
+  "version": "1.0.0",
+  "description": "",
+  "main": "linked-list.js",
+  "type": "module",
+  "scripts": {
+    "test": "nodemon *test*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
