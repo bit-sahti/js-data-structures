@@ -5,9 +5,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "node --test"
+    "test": "mocha */*.test.js",
+    "test:cov": "c8 npm test"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "c8": "^7.12.0",
+    "mocha": "^10.0.0"
+  }
 }
