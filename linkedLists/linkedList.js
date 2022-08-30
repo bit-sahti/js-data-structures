@@ -1,9 +1,8 @@
-import { LinkedListInterface } from './linkedListInterface.js';
-
-
 class LinkedList {
   constructor(head = null) {
-    this.head = head;
+    this.length = 0;
+
+    this.addInitialNode(head)
   }
 
   isEmpty() {
@@ -11,26 +10,34 @@ class LinkedList {
   }
 
   getTail() {
-    let currentNode = this.head;
+    return this.tail;
+  }
 
-    while (currentNode?.next) {
-      currentNode = currentNode.next;
-    }
+  addInitialNode(node) {
+    this.head = node;
 
-    return currentNode;
+    this.tail = node;
+
+    if (node) this.length++;
   }
 
   addToStart(node) {
-    if (!this.head) this.head = node;
+    if (!this.head) {
+      this.addInitialNode(node);
+
+      return;
+    }
 
     node.next = this.head.next;
 
     this.head = node;
+
+    this.length++;
   }
 
   addToEnd(node) {
     if (!this.head) {
-      this.head = node;
+      this.addInitialNode(node);
 
       return;
     }
@@ -38,9 +45,19 @@ class LinkedList {
     const tail = this.getTail();
 
     tail.next = node;
+
+    this.tail = node;
+
+    this.length++;
   }
 
   addToIndex(index, nodeToInsert) {
+    if (index === this.length) {
+      this.addToEnd(nodeToInsert);
+
+      return;
+    }
+
     let currentNode = this.head;
 
     for (let i = 0; i < index; i++) {
@@ -49,17 +66,28 @@ class LinkedList {
 
         currentNode.next = nodeToInsert;
 
+        this.length++;
+
         return;
       }
 
       currentNode = currentNode.next;
+      this.length++;
     }
   }
 
   deleteFromStart() {
     if (!this.head) return;
 
-    this.head = this.head.next;
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else {
+      this.head = null;
+
+      this.tail = null;
+    }
+
+    this.length--;
   }
 
   deleteFromEnd() {
@@ -70,10 +98,14 @@ class LinkedList {
     }
 
     currentNode.next = null;
+
+    this.tail = currentNode;
+    this.length--;
   }
 
   deleteFromIndex(index) {
     if (!index) return this.deleteFromStart();
+    if (index === this.length - 1) return this.deleteFromEnd();
 
     let currentNode = this.head;
     let previousNode;
@@ -88,6 +120,8 @@ class LinkedList {
       previousNode = currentNode;
       currentNode = currentNode.next;
     }
+
+    this.length--;
   }
 
   clear() {
