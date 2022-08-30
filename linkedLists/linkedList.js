@@ -1,9 +1,5 @@
-class Node {
-  constructor(data = null, next = null) {
-    this.data = data;
-    this.next = next;
-  }
-}
+import { LinkedListInterface } from './linkedListInterface.js';
+
 
 class LinkedList {
   constructor(head = null) {
@@ -99,4 +95,4 @@ class LinkedList {
   }
 }
 
-export { Node, LinkedList }
+export { LinkedList };

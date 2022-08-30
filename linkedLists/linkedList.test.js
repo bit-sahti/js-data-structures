@@ -1,6 +1,7 @@
 import assert from 'assert'
 import { describe, it } from 'node:test'
-import { Node, LinkedList } from './linked-list.js'
+import { Node } from './node.js'
+import { LinkedList } from './linkedList.js'
 
 describe('Linked list test suite', () => {
     it('#constructor -> should initialize without a head by default', () => {

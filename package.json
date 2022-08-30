@@ -1,11 +1,11 @@
 {
-  "name": "algomania",
+  "name": "data-structures",
   "version": "1.0.0",
   "description": "",
-  "main": "linked-list.js",
   "type": "module",
+  "main": "index.js",
   "scripts": {
-    "test": "nodemon *test*"
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
