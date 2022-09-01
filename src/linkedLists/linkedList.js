@@ -1,34 +1,15 @@
-class LinkedList {
-  constructor(head = null) {
-    this.length = 0;
+import { LinkedListInterface } from './linkedListInterface.js';
 
-    this.addInitialNode(head)
-  }
-
-  isEmpty() {
-    return this.head === null;
-  }
-
-  getTail() {
-    return this.tail;
-  }
-
-  addInitialNode(node) {
-    this.head = node;
-
-    this.tail = node;
-
-    if (node) this.length++;
+class LinkedList extends LinkedListInterface {
+  constructor(head) {
+    super();
+    this.addInitialNode(head);
   }
 
   addToStart(node) {
-    if (!this.head) {
-      this.addInitialNode(node);
+    if (!this.head) return this.addInitialNode(node);
 
-      return;
-    }
-
-    node.next = this.head.next;
+    node.next = this.head;
 
     this.head = node;
 
@@ -36,27 +17,19 @@ class LinkedList {
   }
 
   addToEnd(node) {
-    if (!this.head) {
-      this.addInitialNode(node);
-
-      return;
-    }
+    if (!this.head) return this.addInitialNode(node);
 
     const tail = this.getTail();
 
     tail.next = node;
-
     this.tail = node;
 
     this.length++;
   }
 
   addToIndex(index, nodeToInsert) {
-    if (index === this.length) {
-      this.addToEnd(nodeToInsert);
-
-      return;
-    }
+    if (!index) return this.addToStart(nodeToInsert);
+    if (index === this.length) return this.addToEnd(nodeToInsert);
 
     let currentNode = this.head;
 
@@ -66,7 +39,7 @@ class LinkedList {
 
         currentNode.next = nodeToInsert;
 
-        continue;
+        break;
       }
 
       currentNode = currentNode.next;
@@ -110,25 +83,15 @@ class LinkedList {
     for (let i = 0; i <= index; i++) {
       if (i === index) {
         previousNode.next = currentNode.next;
-        
+
         continue;
       }
-      
+
       previousNode = currentNode;
       currentNode = currentNode.next;
-
     }
 
     this.length--;
-  }
-
-  clear() {
-    if (this.head) {
-      this.head = null;
-      this.tail = null;
-      this.length = 0;
-    }
-
   }
 }
 

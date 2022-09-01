@@ -19,18 +19,8 @@ describe('Linked list test suite', () => {
         linkedList.addToStart(secondNode)
         linkedList.addToStart(firstNode)
 
-        assert.deepStrictEqual(firstNode, linkedList.head)        
-    })
-
-    it('#getTail -> should get the last node from the list', () => {
-        const firstNode = new Node(1)
-        const secondNode = new Node(2)        
-
-        const linkedList = new LinkedList(firstNode)
-
-        linkedList.addToEnd(secondNode)
-
-        assert.deepStrictEqual(linkedList.getTail(), secondNode)
+        assert.deepStrictEqual(linkedList.head, firstNode)        
+        assert.deepStrictEqual(linkedList.head.next, secondNode)        
     })
     
     it('#addToEnd -> should insert nodes in the end of the list', () => {
@@ -61,6 +51,20 @@ describe('Linked list test suite', () => {
         assert.deepStrictEqual(linkedList.getTail(), fourthNode)
     })
 
+    it('#addToIndex -> should insert a node in the beggining of the list if index is 0', () => {
+        const firstNode = new Node(0)
+        const secondNode = new Node(1)
+        const thirdNode = new Node(2)
+        
+        const linkedList = new LinkedList(secondNode)
+
+        linkedList.addToEnd(thirdNode)
+        linkedList.addToIndex(0, firstNode)
+
+        assert.deepStrictEqual(linkedList.head, firstNode)
+        assert.deepStrictEqual(linkedList.head.next, secondNode)
+    })
+
     it('#addToIndex -> should insert a node in the end of the list if index is the last position', () => {
         const firstNode = new Node(0)
         const secondNode = new Node(1)
@@ -70,22 +74,6 @@ describe('Linked list test suite', () => {
         linkedList.addToIndex(1, secondNode)
 
         assert.deepStrictEqual(linkedList.getTail(), secondNode)
-    })
-    
-    it('#isEmpty -> should verify if the list is empty', () => {
-        const firstNode = new Node(1)
-
-        const linkedList = new LinkedList(firstNode)
-
-        assert.deepEqual(false, linkedList.isEmpty())
-    })
-    
-    it('#clear -> should empty the list', () => {
-        const linkedList = new LinkedList(new Node(1))
-
-        linkedList.clear()
-
-        assert.deepEqual(true, linkedList.isEmpty())
     })
 
     it('#deleteFromStart -> should delete a node from the beggining of the list', () => {
