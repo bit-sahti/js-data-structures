@@ -1,33 +1,41 @@
 class Queue {
+  #data;
+  #head;
+  #rear;
+  
   constructor() {
-    this.data = new Map();
-    this.head = 0;
-    this.rear = 0;
+    this.#data = new Map();
+    this.#head = 0;
+    this.#rear = 0;
   }
 
   get length() {
-    return this.data.size;
+    return this.#data.size;
   }
 
   enqueue(item) {
-    this.data.set(this.rear, item);
+    this.#data.set(this.#rear, item);
 
-    this.rear++;
+    this.#rear++;
   }
 
   dequeue() {
-    const item = this.data.get(this.head);
-    this.data.delete(this.head);
+    const item = this.#data.get(this.#head);
+    this.#data.delete(this.#head);
 
-    this.head++;
+    this.#head++;
 
     return item;
   }
 
   peek(index) {
-    if (index === -1) return this.data.get(this.rear - 1);
+    if (index === -1) return this.#data.get(this.#rear - 1);
 
-    return this.data.get(this.head);
+    return this.#data.get(this.#head);
+  }
+
+  clear() {
+    this.#data.clear();
   }
 }
 

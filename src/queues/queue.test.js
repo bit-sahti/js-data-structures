@@ -3,14 +3,29 @@ import { describe, it } from 'mocha';
 import { Queue } from './queue.js';
 
 describe('Queue test suite', () => {
+    it('#length -> should return the amount of items on the queue', () => {
+        const queue = new Queue();
+
+        queue.enqueue(1)
+        queue.enqueue(2)
+        queue.enqueue(3)
+
+        assert.deepStrictEqual(queue.length, 3)
+        
+        queue.dequeue()
+        queue.dequeue()
+
+        assert.deepStrictEqual(queue.length, 1)
+    })
+
     it('#enqueue -> should add a item to the end of the queue', () => {
         const queue = new Queue();
 
         queue.enqueue(1)
         queue.enqueue(2)
 
-        assert.deepStrictEqual(queue.data.get(0), 1)
-        assert.deepStrictEqual(queue.data.get(1), 2)
+        assert.deepStrictEqual(queue.length, 2)
+        assert.deepStrictEqual(queue.dequeue(), 1)
     })
 
     it('#dequeue -> should remove the first item of the queue', () => {
@@ -50,20 +65,16 @@ describe('Queue test suite', () => {
 
         assert.deepStrictEqual(secondItem, 2)
         assert.deepStrictEqual(queue.dequeue(), secondItem)
-    })
+    })    
 
-    it('#length -> should return the amount of items on the queue', () => {
+    it('#clear -> should clear the queue', () => {
         const queue = new Queue();
 
         queue.enqueue(1)
         queue.enqueue(2)
-        queue.enqueue(3)
 
-        assert.deepStrictEqual(queue.length, 3)
-        
-        queue.dequeue()
-        queue.dequeue()
+        queue.clear()
 
-        assert.deepStrictEqual(queue.length, 1)
+        assert.deepStrictEqual(queue.length, 0)
     })
 });
